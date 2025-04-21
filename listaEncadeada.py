@@ -72,18 +72,50 @@ class ListaEncadeada:
                 anterior = atual
                 atual = atual.proximo
             anterior.proximo = None
+    
+    def remover(self, valor):
+        atual = self.primeiro
+        anterior = None
+        if atual.valor is None:
+            return print('Lista vazia')
+        elif atual.valor == valor:
+            self.primeiro = atual.proximo
+            return print('Valor removido')
+        else:
+            while atual.proximo is not None and atual.valor != valor:
+                anterior = atual
+                atual = atual.proximo
+            if atual.valor == valor:
+                    anterior.proximo = atual.proximo
+                    return print('Valor removido')
+            else:
+                return print('Valor não encontrado')
+            
+    def adicionar_apos(self, apos, novo):
+        atual = self.primeiro
+        novo_no = No(novo)
+        proximo = None
+        if atual.valor is None:
+            return print('Lista vazia')
+        elif atual.valor == apos:
+            novo_no.proximo = atual.proximo
+            self.primeiro.proximo = novo_no
+        else:
+            while atual.proximo is not None and atual.valor != apos:
+                    atual = atual.proximo
+                    proximo = atual.proximo
+            if atual.valor == apos:
+                atual.proximo = novo_no
+                novo_no.proximo = proximo
 
-
-
-
-
-
+                
 
 listaEncadeada = ListaEncadeada()
 
 listaEncadeada.adicionar(10)
 listaEncadeada.adicionar(20)
 listaEncadeada.adicionar(30)
+listaEncadeada.adicionar(35)
 listaEncadeada.adicionar(40)
 listaEncadeada.adicionar(50)
 listaEncadeada.imprimir()
@@ -102,3 +134,10 @@ listaEncadeada.remover_inicio()
 listaEncadeada.remover_fim()
 listaEncadeada.imprimir()
 print('Valores removidos do início e fim da lista')
+
+listaEncadeada.remover(35)
+listaEncadeada.imprimir()
+
+print("Adicionar após")
+listaEncadeada.adicionar_apos(50, 15)
+listaEncadeada.imprimir()
