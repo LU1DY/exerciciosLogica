@@ -107,6 +107,25 @@ class ListaEncadeada:
             if atual.valor == apos:
                 atual.proximo = novo_no
                 novo_no.proximo = proximo
+                
+    def adicionar_antes(self, antes, novo):
+        atual = self.primeiro
+        novo_no = No(novo)
+        anterior = None
+        if atual.valor is None:
+            return print('Lista vazia')
+        elif atual.valor == antes:
+            novo_no.proximo = atual
+            self.primeiro = novo_no
+        else:
+            while atual.proximo is not None and atual.valor != antes:
+                    anterior = atual
+                    atual = atual.proximo
+            if atual.valor == antes:
+                anterior.proximo = novo_no
+                novo_no.proximo = atual
+
+    
 
                 
 
@@ -139,5 +158,9 @@ listaEncadeada.remover(35)
 listaEncadeada.imprimir()
 
 print("Adicionar após")
-listaEncadeada.adicionar_apos(50, 15)
+listaEncadeada.adicionar_apos(50, 55)
+listaEncadeada.imprimir()
+
+print('Adicionar antes')
+listaEncadeada.adicionar_antes(10, 5)
 listaEncadeada.imprimir()
