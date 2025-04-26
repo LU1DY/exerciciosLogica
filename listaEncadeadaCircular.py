@@ -18,6 +18,7 @@ class ListaCircular:
         if self.primeiro is None:
             self.primeiro = novo_no
             novo_no.proximo = self.primeiro
+            self.atual = novo_no
         else:
             atual = self.primeiro
             while atual.proximo != self.primeiro:
@@ -26,45 +27,40 @@ class ListaCircular:
             novo_no.proximo = self.primeiro
 
     def mostrar(self):
-        if self.atual is None:
-            self.atual = self.primeiro
+        if self.atual:
             print(self.atual.valor)
         else:
-            print(self.atual.valor)
+            print('Lista vazia')
 
     def proximo(self):
          if not self.atual:
             self.atual = self.primeiro
+            self.mostrar()
          else:
              self.atual = self.atual.proximo
+             self.mostrar()
+
 
     def anterior(self):
         if not self.atual:
             self.atual = self.primeiro
+            self.mostrar()
         else:
             atual = self.primeiro
             anterior = None
             while atual.proximo != self.primeiro and atual != self.atual:
                 anterior = atual
                 atual = atual.proximo
-
-            
             if self.atual == self.primeiro:
                 atual = self.primeiro
                 while atual.proximo != self.primeiro:
                     atual = atual.proximo
-
                 self.atual = atual
-
+                self.mostrar()
             else:
                 self.atual = anterior
+                self.mostrar()
 
-    def no_atual(self):
-        if not self.atual:
-            self.atual = self.primeiro
-            print(self.atual.valor)
-        else:
-            print(self.atual.valor)
                 
         
 
@@ -79,9 +75,10 @@ lista.adicionar(10)
 lista.adicionar(19)
 lista.adicionar(90)
 
-lista.no_atual()
 lista.proximo()
-lista.mostrar()
+lista.proximo()
+lista.proximo()
+lista.proximo()
+lista.proximo()
+lista.proximo()
 lista.anterior()
-lista.anterior()
-lista.mostrar()
